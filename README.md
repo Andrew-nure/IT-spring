@@ -29,8 +29,8 @@
 Начальная страница:  
 ![image](https://user-images.githubusercontent.com/105606664/169170454-8d810691-1e10-4d3a-b78d-d16a752c88a1.png)
 
-Примеры:
-Запрос/ответ
+Примеры:  
+Запрос/ответ  
 ![image](https://user-images.githubusercontent.com/105606664/169170510-2537b8da-81db-4c71-be34-ded20ed795a7.png)
 ![image](https://user-images.githubusercontent.com/105606664/169170494-308801d1-e6fd-4618-bb3c-59c531e01288.png)
 
@@ -40,7 +40,7 @@
 ![image](https://user-images.githubusercontent.com/105606664/169170603-822fe0d9-5727-45ea-b1d2-0547578d7938.png)
 ![image](https://user-images.githubusercontent.com/105606664/169170617-e56cefc5-6621-4f94-8864-d71cea337bf8.png)
 
-Сохраненные запросы
+Сохраненные запросы  
 ![image](https://user-images.githubusercontent.com/105606664/169170672-81ddae98-de05-4a04-9282-601cc4461e37.png)
 
 
@@ -56,5 +56,5 @@
 Начальная страница:  
 ![image](https://user-images.githubusercontent.com/105606664/169170784-6b7b5d34-3479-47a3-8fdb-e36297fa520f.png)
 
-Пример:
+Пример:  
 ![image](https://user-images.githubusercontent.com/105606664/169170913-ac013738-9f0b-444d-8f66-0d6b79b6bdba.png)
