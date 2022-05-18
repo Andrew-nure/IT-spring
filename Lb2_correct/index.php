@@ -4,7 +4,7 @@ $collection = (new MongoDB\Client)->lb2->forlab;
 
 // ####################################################
 
-$authors = $collection->find([], ['projection' => ['_id' => false, 'Автор' => true]]);
+$authors = $collection->find(['Тип' => 'Книга'], ['projection' => ['_id' => false, 'Автор' => true]]);
 $unique_authors = array();
 foreach ($authors as $entry)
 {
@@ -51,6 +51,7 @@ echo "<span>По </sp><input name='yearMax' type='text'>";
 echo "<br>";
 echo "<button name='btnYear' value='get'>Выполнить</button>";
 echo "</form>";
+echo "<br>";
 
 $script = "<script>
     if (localStorage.getItem('data_by_year'))
@@ -60,10 +61,11 @@ $script = "<script>
 </script>";
 echo $script;
 echo "<br>";
+echo "<br>";
 
 // ####################################################
 
-$publisher = $collection->find([], ['projection' => ['_id' => false, 'Издатель' => true]]);
+$publisher = $collection->find(['Тип' => 'Книга'], ['projection' => ['_id' => false, 'Издатель' => true]]);
 $unique_publisher = array();
 foreach ($publisher as $entry)
 {

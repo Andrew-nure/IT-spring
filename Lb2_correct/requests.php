@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         $yearMin = $_POST['yearMin'];
         $yearMax = $_POST['yearMax'];
         $request = array();
-        $prj = array('projection' => ['_id' => false, 'Год' => false]);
+        $prj = array('projection' => ['_id' => false]);
         $cursor = $collection->find($request, $prj);
         
         $data = array();
@@ -50,21 +50,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         $res .= "<tr><th>Тип</th><th>Название</th><th>Год</th><th>Номер</th><th>Издатель</th><th>Кол. страниц</th><th>ISBN</th><th>Автор</th></tr>";
         foreach ($data as $class)
         {
+            
             if ($class[2] > $yearMax || $class[2] < $yearMin)
             {
                 continue;
             }
-            $author_names = "";
-            if (is_string($class[7]))
+            if ($class[0] == 'Книга') 
             {
-                $author_names = $class[7];
+                $author_names = "";
+                if (is_string($class[7]))
+                {
+                    $author_names = $class[7];
+                }
+                else
+                foreach ($class[7] as $author)
+                {
+                    $author_names .= $author . ', ';
+                }
+                $res .= "<tr><td>$class[0]</td><td>$class[1]</td><td>$class[2]</td><td>$class[3]</td><td>$class[4]</td><td>$class[5]</td><td>$class[6]</td><td>$author_names</td></tr>";
             }
-            else
-            foreach ($class[7] as $author)
+            else if ($class[0] == 'Журнал')
             {
-                $author_names .= $author . ', ';
+                $res .= "<tr><td>$class[0]</td><td>$class[1]</td><td>$class[2]</td><td>$class[3]</td><td></td><td></td><td></td><td></td></tr>";
             }
-            $res .= "<tr><td>$class[0]</td><td>$class[1]</td><td>$class[2]</td><td>$class[3]</td><td>$class[4]</td><td>$class[5]</td><td>$class[6]</td><td>$author_names</td></tr>";
+            else if ($class[0] == 'Газета')
+            {
+                $res .= "<tr><td>$class[0]</td><td>$class[1]</td><td>$class[2]</td><td></td><td></td><td></td><td></td><td></td></tr>";
+            }
+            
         }
         $res .= "</table>";
         echo $res;
@@ -90,19 +103,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         
         $res = "<table border=\'1\'>";
         $res .= "<tr><th>Тип</th><th>Название</th><th>Год</th><th>Номер</th><th>Кол. страниц</th><th>ISBN</th><th>Автор</th></tr>";
-        foreach ($data as $room)
+        foreach ($data as $class)
         {
             $publisher_names = "";
-            if (is_string($room[6]))
+            if (is_string($class[6]))
             {
-                $publisher_names = $room[6];
+                $publisher_names = $class[6];
             }
             else
-            foreach ($room[6] as $pbl)
+            foreach ($class[6] as $pbl)
             {
                 $publisher_names .= $pbl . ', ';
             }
-            $res .= "<tr><td>$room[0]</td><td>$room[1]</td><td>$room[2]</td><td>$room[3]</td><td>$room[4]</td><td>$room[5]</td><td>$publisher_names</td></tr>";
+            $res .= "<tr><td>$class[0]</td><td>$class[1]</td><td>$class[2]</td><td>$class[3]</td><td>$class[4]</td><td>$class[5]</td><td>$publisher_names</td></tr>";
         }
         $res .= "</table>";
         echo $res;
